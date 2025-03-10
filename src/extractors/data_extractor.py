@@ -85,9 +85,26 @@ class DataExtractor:
         tables = []
 
         if isinstance(self.loader, PDFLoader):
-            for page_num, page in enumerate(self.loader.pdf, start=1): #type: ignore
-                # Add logic to extract tables from PDF pages
-                pass
+            for page_num, page in enumerate(self.loader.pdf, start=1):
+                text_blocks = page.get_text("blocks")  # Gets structured text blocks
+                structured_text = [block[4] for block in text_blocks]  # Extract only text
+                tables.append({"page": page_num, "table_data": structured_text})
+
+        elif isinstance(self.loader, DOCXLoader):
+            for table in self.loader.doc.tables:
+                table_data = [[cell.text.strip() for cell in row.cells] for row in table.rows]
+                tables.append({"table_data": table_data})
+
+        elif isinstance(self.loader, PPTLoader):
+            for slide_num, slide in enumerate(self.loader.ppt.slides, start=1):
+                for shape in slide.shapes:
+                    if hasattr(shape, "table"):
+                        table_data = [
+                            [cell.text.strip() for cell in row.cells] for row in shape.table.rows
+                        ]
+                        tables.append({"slide": slide_num, "table_data": table_data})
+
+        return tables
 
 # test = DataExtractor(PDFLoader("data/sample1.pdf"))
 # print(test.extract_tables())
