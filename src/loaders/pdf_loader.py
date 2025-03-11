@@ -1,4 +1,3 @@
-# src/loaders/pdf_loader.py
 from .file_loader import FileLoader
 import fitz  # PyMuPDF
 

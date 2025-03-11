@@ -4,7 +4,6 @@ from src.loaders.pdf_loader import PDFLoader
 from src.loaders.docx_loader import DOCXLoader
 from src.loaders.ppt_loader import PPTLoader
 
-# Import your new extractors
 from src.extractors.data_extractor import (
     PDFDataExtractor,
     DOCXDataExtractor,

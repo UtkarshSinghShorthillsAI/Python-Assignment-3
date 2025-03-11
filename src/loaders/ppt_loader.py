@@ -1,4 +1,3 @@
-# src/loaders/ppt_loader.py
 from .file_loader import FileLoader
 from pptx import Presentation
 

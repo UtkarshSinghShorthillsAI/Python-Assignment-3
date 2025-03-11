@@ -1,4 +1,3 @@
-# src/loaders/file_loader.py
 from abc import ABC, abstractmethod
 import os
 

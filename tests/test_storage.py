@@ -1,5 +1,3 @@
-# tests/test_storage.py
-
 import unittest
 import os
 import shutil

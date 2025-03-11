@@ -1,4 +1,3 @@
-# src/extractors/data_extractor.py
 import os
 import csv
 import io
