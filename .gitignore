@@ -3,3 +3,6 @@ __pycache__/
 *.pyo
 data/*
 output/
+*.sqlite
+*.sqlite3
+*.db
