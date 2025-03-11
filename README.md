@@ -50,7 +50,7 @@ This assignment demonstrates how to:
 
 1. **Clone this repository** (or download the ZIP):
    ```bash
-   git clone https://github.com/your-username/document-extraction.git
+   git clone https://github.com/UtkarshSinghShorthillsAI/Python-Assignment-3
    cd python-assignment-3
    ```
 
