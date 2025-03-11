@@ -1,21 +1,24 @@
-import fitz  # type: ignore PyMuPDF
+# src/loaders/pdf_loader.py
 from .file_loader import FileLoader
+import fitz  # PyMuPDF
 
 class PDFLoader(FileLoader):
-    """Loads and processes PDF files using PyMuPDF"""
+    """Loader for PDF files (just opens the file)."""
 
-    def __init__(self, file_path: str) -> None:
+    def __init__(self, file_path: str):
         super().__init__(file_path)
-        self.pdf: fitz.Document = fitz.Document()  # Type hint for PyMuPDF document
+        self.doc = None  # Will hold a PyMuPDF Document
 
-    def load_file(self) -> None:
-        """Opens a PDF file using PyMuPDF"""
+    def load_file(self):
+        """
+        Validate and open the PDF file, returning the fitz Document object.
+        """
+        if not self.validate_file():
+            raise FileNotFoundError(f"PDF file not found: {self.file_path}")
+
         try:
-            self.pdf = fitz.open(self.file_path)
-            print("PDF loaded")
+            self.doc = fitz.open(self.file_path)
+            print(f"PDF loaded from {self.file_path}")
+            return self.doc
         except Exception as e:
             raise RuntimeError(f"Failed to open PDF: {e}")
-
-
-# test = PDFLoader("data/sample1.pdf")
-# test.load_file()

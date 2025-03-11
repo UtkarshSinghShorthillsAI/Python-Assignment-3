@@ -1,13 +1,19 @@
+# src/storage/storage.py
+
 from abc import ABC, abstractmethod
-from src.extractors.data_extractor import DataExtractor
+from typing import Dict, Any
 
 class Storage(ABC):
-    """Abstract class for storing extracted data"""
-
-    def __init__(self, extractor: DataExtractor) -> None:
-        self.extractor = extractor
+    """
+    Abstract base class for storing extracted data.
+    Concrete classes:
+      - FileStorage: saves extracted data to files.
+      - SQLStorage: saves extracted data to an SQL database.
+    """
 
     @abstractmethod
-    def store_data(self) -> None:
-        """Method to store extracted data"""
+    def save(self, data: Dict[str, Any], file_name: str):
+        """
+        Save the extracted data in the desired format.
+        """
         pass

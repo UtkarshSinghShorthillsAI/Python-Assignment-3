@@ -1,19 +1,21 @@
+# src/loaders/file_loader.py
 from abc import ABC, abstractmethod
 import os
 
 class FileLoader(ABC):
-    """Abstract base class for loading files"""
+    """
+    Abstract base class for loading/validating files.
+    Concrete classes (PDFLoader, DOCXLoader, PPTLoader) implement load_file().
+    """
 
-    def __init__(self, file_path: str) -> None:
-        self.file_path: str = file_path
-        self.validate_file()
+    def __init__(self, file_path: str):
+        self.file_path = file_path
 
-    def validate_file(self) -> None:
-        """Check if the file exists and has the correct format"""
-        if not os.path.exists(self.file_path):
-            raise FileNotFoundError(f"File not found: {self.file_path}")
+    def validate_file(self) -> bool:
+        """Check if file exists on disk."""
+        return os.path.isfile(self.file_path)
 
     @abstractmethod
-    def load_file(self) -> None:
-        """Method to be implemented by concrete classes"""
+    def load_file(self):
+        """Open the file and return a loaded doc/presentation object."""
         pass
