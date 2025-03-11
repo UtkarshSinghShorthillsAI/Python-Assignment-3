@@ -73,7 +73,7 @@ This assignment demonstrates how to:
 
 ## Usage
 
-### 1) Running Extraction with `main.py`
+###  Running Extraction with `main.py`
 
 If you have a `main.py` that demonstrates loading and extracting, you can run:
 ```bash
@@ -86,20 +86,6 @@ python main.py data/sample.pdf
 **Results**:
 - **Extracted data** goes into folders like `output/sample/images/`, etc. if you’re using `FileStorage`.
 
-### 2) Storing Data in SQL
-
-If you prefer storing extracted data in an SQLite database:
-
-1. In your code, create an instance of `SQLStorage`:
-   ```python
-   from src.storage.sql_storage import SQLStorage
-   storage = SQLStorage(db_path="extracted_data.db")
-   ```
-2. After extraction, call:
-   ```python
-   storage.save(extracted_data, "sample_file")
-   ```
-3. A file named `extracted_data.db` will appear. You can open it with any SQLite browser or by using `sqlite3` on the command line.
 
 ---
 
